@@ -1,6 +1,8 @@
 import express from 'express';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 import router from './routes';
 
@@ -10,6 +12,20 @@ import authMiddleware from './middleware/auth.middleware';
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: 'REST API',
+      version: '1.0.0',
+      description: 'Example docs',
+    },
+  },
+  apis: ['swagger.yaml'],
+};
+
+const specs = swaggerJSDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(passport.initialize());
 authMiddleware(passport);

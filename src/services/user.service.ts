@@ -5,9 +5,8 @@ import {
   QueryOptions,
   UpdateQuery,
 } from 'mongoose';
-import { IUser, IUpdateUser } from '../interfaces/user.interface';
+import { IUser } from '../interfaces/user.interface';
 import UserModel, { UserDocument } from '../models/user.model';
-import { GeneralError, NotFound } from '../utils/error';
 
 export const createUserService = async (newUser: DocumentDefinition<IUser>) => {
   try {

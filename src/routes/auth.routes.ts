@@ -6,6 +6,6 @@ import { loginValidator } from '../validators/auth.validator';
 
 const router = express.Router();
 
-router.post('/api/auth/login', handleValidations(loginValidator), login);
+router.post('/login', handleValidations(loginValidator), login);
 
 export default router;

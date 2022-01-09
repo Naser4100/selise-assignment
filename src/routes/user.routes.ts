@@ -10,12 +10,12 @@ import {
 const router = express.Router();
 
 router.post(
-  '/api/users/registration',
+  '/registration',
   handleValidations(registrationValidator),
   createUser
 );
 router.post(
-  '/api/users/set-password',
+  '/set-password',
   handleValidations(setPasswordValidator),
   setPassword
 );
