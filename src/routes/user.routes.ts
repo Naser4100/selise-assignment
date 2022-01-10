@@ -20,10 +20,4 @@ router.post(
   setPassword
 );
 
-router.get(
-  '/test-auth',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => res.send('Authenticated API')
-);
-
 export default router;
