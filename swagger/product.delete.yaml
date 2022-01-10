@@ -3,7 +3,7 @@ paths:
   /api/product:
     delete:
       tags:
-        - products
+        - Products
       summary: Delete product
       parameters:
         - name: accessToken
@@ -41,5 +41,5 @@ paths:
 
 # Product API specification
 tags:
-  - name: products
-    description: products API
+  - name: Products
+    description: Products API

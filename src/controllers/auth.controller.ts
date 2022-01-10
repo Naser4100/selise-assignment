@@ -9,6 +9,12 @@ import {
   signRefreshTokenService,
 } from '../services/auth.service';
 
+import {
+  createSessionService,
+  findSessionService,
+  updateSessionService,
+} from '../services/session.service';
+
 export const login = asyncHandler(async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
@@ -27,9 +33,25 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
   const accessToken = await signAccessTokenService(user._id);
   const refreshToken = await signRefreshTokenService(user._id);
 
+  const session = await findSessionService(user._id);
+
+  if (session) {
+    await updateSessionService(user._id, { $set: { valid: true } });
+  } else {
+    await createSessionService(user._id);
+  }
+
   res.cookie('accessToken', accessToken);
   res.cookie('refreshToken', refreshToken);
   res
     .status(200)
     .json({ success: true, message: 'Access and Refresh token has been sent' });
+});
+
+export const logout = asyncHandler(async (req: Request, res: Response) => {
+  await updateSessionService(req?.user?._id as string, {
+    $set: { valid: false },
+  });
+
+  res.status(200).json({ success: true, message: 'Successfully logout' });
 });

@@ -1,13 +1,13 @@
 tags:
-  - name: users
-    description: users API
+  - name: Users
+    description: Users API
 
 paths:
   # [POST] /api/users/registration
   /api/users/registration:
     post:
       tags:
-        - users
+        - Users
       summary: Add new user
       parameters:
         - name: body
@@ -49,7 +49,7 @@ paths:
   /api/users/set-password:
     post:
       tags:
-        - users
+        - Users
       summary: Set password
       parameters:
         - name: header
@@ -89,7 +89,7 @@ paths:
 
 # definitions
 definitions:
-  users:
+  Users:
     type: object
     required:
       - name

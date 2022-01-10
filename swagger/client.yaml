@@ -3,7 +3,7 @@ paths:
   /api/clients/{clientId}:
     post:
       tags:
-        - clients
+        - Clients
       summary: Get order details
       parameters:
         - name: accessToken
@@ -27,12 +27,12 @@ paths:
 
 # Client API specification
 tags:
-  - name: clients
-    description: clients API
+  - name: Clients
+    description: Clients API
 
 # definitions
 definitions:
-  clients:
+  Clients:
     type: object
     required:
       - name

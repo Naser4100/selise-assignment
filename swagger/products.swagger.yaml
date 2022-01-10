@@ -3,7 +3,7 @@ paths:
   /api/product:
     post:
       tags:
-        - products
+        - Products
       summary: Add new product
       parameters:
         - name: accessToken
@@ -57,7 +57,7 @@ paths:
   /api/products:
     post:
       tags:
-        - products
+        - Products
       summary: Get all product details with pagination
       parameters:
         - name: accessToken
@@ -103,7 +103,7 @@ paths:
   /api/products/{productId}:
     post:
       tags:
-        - products
+        - Products
       summary: Get product details
       parameters:
         - name: accessToken
@@ -140,12 +140,12 @@ paths:
 
 # Product API specification
 tags:
-  - name: products
-    description: products API
+  - name: Products
+    description: Products API
 
 # definitions
 definitions:
-  products:
+  Products:
     type: object
     required:
       - name

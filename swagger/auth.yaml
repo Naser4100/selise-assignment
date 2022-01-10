@@ -1,0 +1,63 @@
+paths:
+  # [POST] /api/auth/login
+  /api/auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login
+      parameters:
+        - name: body
+          in: body
+          description: Login
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        200:
+          description: 'Access and Refresh token has been sent'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  # [POST] /api/auth/logout
+  /api/auth/logout:
+    post:
+      tags:
+        - Auth
+      summary: Logout
+      parameters:
+        - name: accessToken
+          in: cookie
+          description: For user authentication
+          required: true
+      responses:
+        200:
+          description: 'Successfully logout'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+tags:
+  - name: Auth
+    description: Authentication API

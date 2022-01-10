@@ -3,7 +3,7 @@ paths:
   /api/order:
     post:
       tags:
-        - orders
+        - Orders
       summary: Add new order
       parameters:
         - name: accessToken
@@ -50,7 +50,7 @@ paths:
   /api/orders/{orderId}:
     post:
       tags:
-        - orders
+        - Orders
       summary: Get order details
       parameters:
         - name: accessToken
@@ -76,7 +76,7 @@ paths:
   /api/orders/clients/{clientId}/download:
     post:
       tags:
-        - orders
+        - Orders
       summary: Download pdf file of client orders info
       parameters:
         - name: accessToken
@@ -100,12 +100,12 @@ paths:
 
 # Order API specification
 tags:
-  - name: orders
-    description: orders API
+  - name: Orders
+    description: Orders API
 
 # definitions
 definitions:
-  orders:
+  Orders:
     type: object
     required:
       - orderId

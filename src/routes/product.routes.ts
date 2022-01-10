@@ -6,6 +6,7 @@ import {
   getAllProduct,
   getProductDetails,
   updateProduct,
+  uploadProduct,
 } from '../controllers/product.controller';
 import { handleValidations } from '../middleware/validation.middleware';
 import { paginatedResults } from '../middleware/pagination.middleware';
@@ -50,6 +51,12 @@ router.post(
   '/products/:productId',
   passport.authenticate('jwt', { session: false }),
   getProductDetails
+);
+
+router.post(
+  '/import/product',
+  passport.authenticate('jwt', { session: false }),
+  uploadProduct
 );
 
 export default router;

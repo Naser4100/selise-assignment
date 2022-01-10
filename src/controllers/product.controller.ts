@@ -11,6 +11,7 @@ import { HttpException } from '../exceptions/HttpException';
 import { IProduct } from '../interfaces/product.interface';
 import { UpdateProductInput, GetAllProductInput } from '../dtos/product.dtos';
 import { IPaginateResponse } from '../interfaces/customResponse.interface';
+import ProductModel from '../models/product.model';
 
 export const addNewProduct = asyncHandler(
   async (
@@ -112,5 +113,17 @@ export const getAllProduct = asyncHandler(
       totalDocument: res.totalDocument,
       products: res.paginatedResults,
     });
+  }
+);
+
+export const uploadProduct = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const body = JSON.stringify(req?.files?.products);
+    const productsJson = await JSON.parse(body);
+    console.log(productsJson);
+
+    // await ProductModel.insertMany(productsJson);
+
+    res.status(200).json({ message: 'Not implemented' });
   }
 );
