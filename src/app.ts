@@ -13,9 +13,6 @@ declare global {
   }
 }
 
-import dotenv from 'dotenv';
-dotenv.config();
-
 import router from './routes';
 
 import handleError from './middleware/handleError.middleware';
