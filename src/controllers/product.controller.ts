@@ -21,9 +21,11 @@ export const addNewProduct = asyncHandler(
   ) => {
     const { name, price, details, sizes, productImages, quantity } = req.body;
 
+    const userId: any = req?.user?._id;
+
     const newProduct = await addNewProductService({
       name,
-      user: req?.user?._id,
+      user: userId,
       price,
       details,
       sizes,
@@ -38,7 +40,6 @@ export const addNewProduct = asyncHandler(
   }
 );
 
-//
 export const getProductDetails = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const productId = req.params.productId;
@@ -49,7 +50,7 @@ export const getProductDetails = asyncHandler(
 
     const product = await getProductDetailsService({
       _id: productId,
-      user: req?.user?._id,
+      user: req?.user?._id as unknown as string,
     });
 
     res.status(200).json({
@@ -87,9 +88,10 @@ export const deleteProduct = asyncHandler(
     next: NextFunction
   ) => {
     const { productId } = req.body;
+    const userId = req?.user?._id;
     const deletedProduct = await deleteProductService({
       _id: productId,
-      user: req?.user?._id,
+      user: userId as any,
     });
     res.status(200).json({
       success: true,

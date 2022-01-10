@@ -1,13 +1,12 @@
+import { Response } from 'express';
 import PdfDocument from 'pdfkit';
-import fs from 'fs';
-import IClientOrderDetails from '../interfaces/clientOrderDetails.interface';
 
 const pdfDoc = new PdfDocument({ bufferPages: true });
 
 const generatePdfUtils = (
   clientId: string,
-  orderDetails: Array<IClientOrderDetails>,
-  res
+  orderDetails: any,
+  res: Response
 ) => {
   // pdfDoc.pipe(fs.createWriteStream(`pdf/${clientId}.pdf`));
 
@@ -23,11 +22,11 @@ const generatePdfUtils = (
 
   pdfDoc.text('Product and Order Details', { align: 'left' });
   pdfDoc.text('__________________', { align: 'left' });
-  orderDetails.map((order) => {
+  orderDetails.map((order: any) => {
     pdfDoc.text(`Product name: ${order.productId.name}`, { align: 'left' });
     pdfDoc.text(`Price: ${order.productId.price}`, { align: 'left' });
     pdfDoc.text(`Details: ${order.productId.details}`, { align: 'left' });
-    pdfDoc.text(`sizes: ${order.productId.sizes.map((size) => size)}`, {
+    pdfDoc.text(`sizes: ${order.productId.sizes.map((size: any) => size)}`, {
       align: 'left',
     });
     pdfDoc.text('-------------------------', { align: 'left' });

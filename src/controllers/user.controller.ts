@@ -58,7 +58,7 @@ export const setPassword = asyncHandler(
     const saltWorkFactor = config.get<string>('saltWorkFactor');
 
     try {
-      const decoded = JWT.verify(token, JWT_SECRET);
+      const decoded: any = JWT.verify(token, JWT_SECRET);
       const hashedPassword = await bcrypt.hash(password, saltWorkFactor);
       await findUserByIdAndUpdateService(
         { _id: decoded._id },

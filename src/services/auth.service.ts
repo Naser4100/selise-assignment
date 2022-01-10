@@ -1,15 +1,5 @@
 import JWT from 'jsonwebtoken';
-import {
-  DocumentDefinition,
-  ObjectId,
-  FilterQuery,
-  QueryOptions,
-  UpdateQuery,
-} from 'mongoose';
 import config from 'config';
-import { IUser, IUpdateUser } from '../interfaces/user.interface';
-import UserModel, { UserDocument } from '../models/user.model';
-import { GeneralError, NotFound } from '../utils/error';
 
 export const signAccessTokenService = async (userId: string) => {
   const JWT_SECRET = config.get<string>('jwtSecret');
