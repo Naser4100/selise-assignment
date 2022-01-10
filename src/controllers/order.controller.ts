@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
+import fs from 'fs';
+import path from 'path';
 import asyncHandler from '../middleware/asyncHandler.middleware';
+import pdfGenerator from '../utils/pdfGenerator';
 
 import {
   addNewOrderService,
@@ -51,3 +54,20 @@ export const getClientsOrderDetails = asyncHandler(
     });
   }
 );
+
+export const generatePDF = asyncHandler(async (req: Request, res: Response) => {
+  const clientId = req.params.clientId;
+
+  if (!clientId) {
+    throw new HttpException(400, 'Client id is required');
+  }
+
+  const clientOrderDetails = await getClientOrderDetailsService(clientId);
+
+  pdfGenerator(clientId, clientOrderDetails, res);
+
+  // res.status(200).download(path.join(__dirname, `../../pdf/${clientId}.pdf`));
+  // res.setHeader('Content-type', 'application/pdf');
+  // res.download(path.join(__dirname, `../../pdf/${clientId}.pdf`));
+  // res.status(200).json({ success: true });
+});

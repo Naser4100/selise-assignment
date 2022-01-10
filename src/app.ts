@@ -3,6 +3,10 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import config from 'config';
+
+import dotenv from 'dotenv';
+dotenv.config();
 
 import router from './routes';
 

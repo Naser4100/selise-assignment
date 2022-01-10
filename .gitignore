@@ -1,3 +1,4 @@
 node_modules
 build
-config/default.ts
+# config/default.ts
+.env
