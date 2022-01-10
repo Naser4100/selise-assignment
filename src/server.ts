@@ -8,7 +8,7 @@ import connectDB from './utils/connectDB';
 const PORT = config.get<number>('port');
 
 // Starting server
-app.listen(PORT, () => {
+app.listen(PORT || 5000, () => {
   connectDB();
   console.log(`Server running on port ${PORT}`);
 });

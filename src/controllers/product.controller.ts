@@ -4,7 +4,6 @@ import {
   addNewProductService,
   deleteProductService,
   updateProductService,
-  gelAllProductService,
   getProductDetailsService,
 } from '../services/product.service';
 import asyncHandler from '../middleware/asyncHandler.middleware';

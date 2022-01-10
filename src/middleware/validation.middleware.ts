@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { HttpException } from '../exceptions/HttpException';
 
-// eslint-disable-next-line
 export const handleValidations = (validate: any) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = validate(req.body);

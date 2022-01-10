@@ -1,10 +1,6 @@
 import express from 'express';
 import passport from 'passport';
-import {
-  addNewOrder,
-  getClientsOrderDetails,
-  getOrderDetails,
-} from '../controllers/order.controller';
+import { getClientsOrderDetails } from '../controllers/order.controller';
 
 const router = express.Router();
 
