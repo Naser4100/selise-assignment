@@ -24,6 +24,8 @@ export const createUser = asyncHandler(
     const setPasswordTokenExp = config.get<string>('setPasswordTokenExp');
     const senderFromEmail = config.get<string>('senderFromEmail');
 
+    console.log(senderFromEmail);
+
     const setPasswordToken = JWT.sign({ _id: newUser._id }, JWT_SECRET, {
       expiresIn: setPasswordTokenExp,
     });

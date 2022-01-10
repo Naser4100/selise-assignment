@@ -1,0 +1,124 @@
+paths:
+  # [POST] /api/order
+  /api/order:
+    post:
+      tags:
+        - orders
+      summary: Add new order
+      parameters:
+        - name: accessToken
+          in: cookie
+          description: For user authentication
+          required: true
+        - name: body
+          in: body
+          description: Order data
+          required: true
+          schema:
+            type: object
+            properties:
+              productList:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    productId:
+                      type: string
+                    quantity:
+                      type: string
+                    totalPrice:
+                      type: string
+                    size:
+                      type: string
+              name:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+      responses:
+        201:
+          description: 'New order created successfully'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  # [POST] /api/orders/:productId
+  /api/orders/{orderId}:
+    post:
+      tags:
+        - orders
+      summary: Get order details
+      parameters:
+        - name: accessToken
+          in: cookie
+          description: For user authentication
+          required: true
+        - name: orderId
+          in: path
+          description: Order id
+          required: true
+      responses:
+        200:
+          description: 'Get order details successfully'
+
+        400:
+          description: 'Order id is required'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  # [POST] /api/clients/:clientId
+  /api/orders/clients/{clientId}/download:
+    post:
+      tags:
+        - orders
+      summary: Download pdf file of client orders info
+      parameters:
+        - name: accessToken
+          in: cookie
+          description: For user authentication
+          required: true
+        - name: clientId
+          in: path
+          description: Client Id
+          required: true
+      responses:
+        200:
+          description: 'Get client order details successfully'
+
+        400:
+          description: 'Client id is required'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# Order API specification
+tags:
+  - name: orders
+    description: orders API
+
+# definitions
+definitions:
+  orders:
+    type: object
+    required:
+      - orderId
+      - clientId
+      - user
+      - price
+    properties:
+      _id:
+        type: string
+        description: Auto generated id of the product
+      orderId:
+        type: string
+        description: order id
+      clientId:
+        type: string
+        description: A reference to client model/table

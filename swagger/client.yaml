@@ -1,0 +1,52 @@
+paths:
+  # [POST] /api/clients/:clientId
+  /api/clients/{clientId}:
+    post:
+      tags:
+        - clients
+      summary: Get order details
+      parameters:
+        - name: accessToken
+          in: cookie
+          description: For user authentication
+          required: true
+        - name: clientId
+          in: path
+          description: Client Id
+          required: true
+      responses:
+        200:
+          description: 'Get client order details successfully'
+
+        400:
+          description: 'Client id is required'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# Client API specification
+tags:
+  - name: clients
+    description: clients API
+
+# definitions
+definitions:
+  clients:
+    type: object
+    required:
+      - name
+      - email
+    properties:
+      _id:
+        type: string
+        description: Auto generated id of the product
+      name:
+        type: string
+        description: client name
+      email:
+        type: string
+        description: client email
+      phone:
+        type: string
+        description: Client phone

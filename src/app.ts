@@ -25,12 +25,13 @@ app.use(cookieParser());
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
-      title: 'REST API',
+      title: 'SELISE assignment API docs',
       version: '1.0.0',
-      description: 'Example docs',
+      description:
+        'SELISE assignment for the position of Nodejs Developer API docs ',
     },
   },
-  apis: ['swagger.yaml'],
+  apis: ['./swagger/*.yaml'],
 };
 
 const specs = swaggerJSDoc(swaggerOptions);

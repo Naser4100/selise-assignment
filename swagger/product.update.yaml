@@ -1,0 +1,59 @@
+paths:
+  # [PATCH] /api/product
+  /api/product:
+    patch:
+      tags:
+        - products
+      summary: Update product
+      parameters:
+        - name: accessToken
+          in: cookie
+          description: For user authentication
+          required: true
+        - name: body
+          in: body
+          description: product Data
+          required: true
+          schema:
+            type: object
+            properties:
+              productId:
+                type: string
+              updatedInfo:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  price:
+                    type: number
+                  details:
+                    type: string
+                  quantity:
+                    type: string
+                  sizes:
+                    type: array
+                    items:
+                      type: string
+                  productImages:
+                    type: array
+                    items:
+                      type: string
+      responses:
+        200:
+          description: 'Product updated successfully'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'

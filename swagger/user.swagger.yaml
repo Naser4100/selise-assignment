@@ -1,0 +1,119 @@
+tags:
+  - name: users
+    description: users API
+
+paths:
+  # [POST] /api/users/registration
+  /api/users/registration:
+    post:
+      tags:
+        - users
+      summary: Add new user
+      parameters:
+        - name: body
+          in: body
+          description: user Data
+          required: true
+          schema:
+            type: object
+            properties:
+              password:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+              occupation:
+                type: string
+      responses:
+        201:
+          description: 'Password set token will be send to user email'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  # [POST] /api/users/set-password
+  /api/users/set-password:
+    post:
+      tags:
+        - users
+      summary: Set password
+      parameters:
+        - name: header
+          in: Authorization
+          description: Set password JWT token
+          schema:
+            type: string
+          required: true
+        - name: body
+          in: body
+          description: new password
+          required: true
+          schema:
+            type: object
+            properties:
+              password:
+                type: string
+      responses:
+        200:
+          description: 'Successfully password set'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  users:
+    type: object
+    required:
+      - name
+      - email
+      - password
+    properties:
+      _id:
+        type: string
+        description: Auto generated id of user
+      name:
+        type: string
+        description: user name
+      email:
+        type: string
+        description: user Email
+      phone:
+        type: string
+        description: user phone
+      occupation:
+        type: string
+        description: user phone
+      password:
+        type: string
+        description: user Password
+schemes:
+  - https
+  - http

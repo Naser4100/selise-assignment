@@ -10,7 +10,7 @@ const smtp = config.get<{
 }>('smtp');
 
 const transporter = nodemailer.createTransport({
-  ...smtp,
+  service: smtp.host,
   auth: { user: smtp.user, pass: smtp.pass },
 });
 

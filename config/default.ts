@@ -8,9 +8,9 @@ export default {
   refreshTokenTTL: '1y',
   setPasswordTokenExp: '1h',
   smtp: {
-    user: '8424e02a201dbb23b746f946732f83a5',
-    pass: 'f916e322fc6002b808bb8bb5ba9739e6',
-    host: 'in-v3.mailjet.com',
+    user: 'nasermw365@gmail.com',
+    pass: '5mM1EJNr4qDn',
+    host: 'gmail',
     port: 587,
     secure: false,
   },

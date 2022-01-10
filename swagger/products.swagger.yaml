@@ -1,0 +1,183 @@
+paths:
+  # [POST] /api/product
+  /api/product:
+    post:
+      tags:
+        - products
+      summary: Add new product
+      parameters:
+        - name: accessToken
+          in: cookie
+          description: For user authentication
+          required: true
+        - name: body
+          in: body
+          description: product Data
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              price:
+                type: number
+              details:
+                type: string
+              quantity:
+                type: string
+              sizes:
+                type: array
+                items:
+                  type: string
+              productImages:
+                type: array
+                items:
+                  type: string
+      responses:
+        201:
+          description: 'New product added successfully'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  # [POST] /api/products
+  /api/products:
+    post:
+      tags:
+        - products
+      summary: Get all product details with pagination
+      parameters:
+        - name: accessToken
+          in: cookie
+          description: For user authentication
+          required: true
+        - name: body
+          in: body
+          description: product Data
+          required: true
+          schema:
+            type: object
+            properties:
+              page:
+                type: number
+              total:
+                type: number
+              sortBy:
+                type: string
+              sortType:
+                type: string
+      responses:
+        200:
+          description: 'Get paginated result'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  # [POST] /api/products/:productId
+  /api/products/{productId}:
+    post:
+      tags:
+        - products
+      summary: Get product details
+      parameters:
+        - name: accessToken
+          in: cookie
+          description: For user authentication
+          required: true
+        - name: productId
+          in: path
+          description: Product id
+          required: true
+      responses:
+        200:
+          description: 'Get product details'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  product:
+                    type: object
+                    schema:
+                      $ref: '#/definitions/products'
+
+        400:
+          description: 'Product id is required'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# Product API specification
+tags:
+  - name: products
+    description: products API
+
+# definitions
+definitions:
+  products:
+    type: object
+    required:
+      - name
+      - email
+      - user
+      - price
+    properties:
+      _id:
+        type: string
+        description: Auto generated id of the product
+      name:
+        type: string
+        description: user name
+      user:
+        type: string
+        description: A reference to user model/table
+      price:
+        type: number
+        description: product price
+      details:
+        type: string
+        description: product details
+      quantity:
+        type: string
+        description: A reference to quantity model/table
+      sizes:
+        type: array
+        items:
+          type: string
+        description: Product size
+      productImages:
+        type: array
+        items:
+          type: string
+        description: Product images
