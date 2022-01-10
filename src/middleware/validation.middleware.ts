@@ -11,7 +11,7 @@ export const handleValidations = (validate: any) => {
     }
 
     const { details } = result.error;
-    const message = details.map((e) => e.message);
+    const message = details.map((e: any) => e.message);
     const msg = message.join(',');
     throw new HttpException(400, msg);
   };

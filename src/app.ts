@@ -5,6 +5,14 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import config from 'config';
 
+declare global {
+  namespace Express {
+    interface User {
+      _id: string;
+    }
+  }
+}
+
 import dotenv from 'dotenv';
 dotenv.config();
 
